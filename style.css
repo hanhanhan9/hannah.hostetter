@@ -218,10 +218,6 @@ h2 {
   gap: 1.25rem;
 }
 
-.card-grid .card {
-  position: relative;
-}
-
 .card {
   border: 1px solid var(--blossom);
   border-radius: 14px;
@@ -389,31 +385,81 @@ html {
   100% { transform: scale(0.3) rotate(210deg); opacity: 0; }
 }
 
-/* Cards: softer, slower shimmer */
-.sparkle-card {
-  font-size: 1rem;
+/* Spin: for links out to other places (email, social) — a full lazy rotation */
+.sparkle-spin {
+  font-size: 1.1rem;
 }
 
-.card-grid .card:hover .sparkle-card {
+.button:hover .sparkle-spin {
   opacity: 1;
-  transform: scale(0.9) rotate(10deg);
-  animation: twinkle-fade 1400ms ease-in-out infinite;
+  transform: scale(1) rotate(0deg);
+  animation: spin-twinkle 1100ms linear infinite;
   animation-delay: var(--delay, 0ms);
 }
 
-.sparkle-card.burst {
-  animation: sparkle-burst-card 650ms ease-out forwards !important;
+.sparkle-spin.burst {
+  animation: sparkle-burst-spin 600ms ease-out forwards !important;
 }
 
-@keyframes twinkle-fade {
-  0%, 100% { opacity: 0.55; transform: scale(0.8) rotate(10deg); }
-  50% { opacity: 1; transform: scale(1.05) rotate(-8deg); }
+@keyframes spin-twinkle {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1) rotate(360deg); }
 }
 
-@keyframes sparkle-burst-card {
-  0% { transform: scale(1) rotate(10deg); opacity: 1; }
-  40% { transform: scale(1.6) rotate(-35deg); opacity: 1; }
-  100% { transform: scale(0.5) rotate(70deg); opacity: 0; }
+@keyframes sparkle-burst-spin {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(0.3) rotate(360deg) translateY(-20px); opacity: 0; }
+}
+
+/* Inline PDF viewer, so writing samples open in-page instead of
+   triggering the visitor's browser download/PDF-handling setting. */
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 21, 26, 0.65);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.pdf-modal.open {
+  display: flex;
+}
+
+.pdf-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  max-height: 850px;
+  background: var(--paper);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.pdf-modal-inner iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 @media (max-width: 480px) {
@@ -429,5 +475,9 @@ html {
   .hero-visual {
     width: 160px;
     height: 190px;
+  }
+
+  .pdf-modal {
+    padding: 0.75rem;
   }
 }
