@@ -1,27 +1,38 @@
-function spawnSparkles(x, y) {
-  const count = 7;
-  for (let i = 0; i < count; i++) {
-    const sparkle = document.createElement("span");
-    sparkle.className = "sparkle";
-    sparkle.textContent = "✨";
-    const angle = (Math.PI * 2 * i) / count + Math.random() * 0.6;
-    const distance = 26 + Math.random() * 24;
-    sparkle.style.left = x + "px";
-    sparkle.style.top = y + "px";
-    sparkle.style.setProperty("--dx", Math.cos(angle) * distance + "px");
-    sparkle.style.setProperty("--dy", Math.sin(angle) * distance + "px");
-    sparkle.style.fontSize = 10 + Math.random() * 8 + "px";
-    document.body.appendChild(sparkle);
-    sparkle.addEventListener("animationend", () => sparkle.remove());
-  }
+function addEdgeSparkles(el, corners, variant) {
+  corners.forEach((corner, i) => {
+    const star = document.createElement("span");
+    star.className = `edge-sparkle ${variant} corner-${corner}`;
+    star.textContent = "✨";
+    star.style.setProperty("--delay", `${i * 130}ms`);
+    star.setAttribute("aria-hidden", "true");
+    el.appendChild(star);
+  });
+}
+
+document.querySelectorAll(".button").forEach((btn) => {
+  addEdgeSparkles(btn, ["tr", "bl"], "sparkle-button");
+});
+
+document.querySelectorAll(".card-grid .card").forEach((card) => {
+  addEdgeSparkles(card, ["tl", "tr", "bl", "br"], "sparkle-card");
+});
+
+function burst(el) {
+  el.querySelectorAll(".edge-sparkle").forEach((star) => {
+    star.classList.remove("burst");
+    void star.offsetWidth; // restart animation
+    star.classList.add("burst");
+  });
 }
 
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".button");
-  if (!btn) return;
+  const card = e.target.closest(".card-grid .card");
 
-  const rect = btn.getBoundingClientRect();
-  spawnSparkles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+  if (btn) burst(btn);
+  else if (card) burst(card);
+
+  if (!btn) return;
 
   const href = btn.getAttribute("href");
   if (!href || btn.target === "_blank") return;
@@ -29,5 +40,5 @@ document.addEventListener("click", (e) => {
   e.preventDefault();
   setTimeout(() => {
     window.location.href = href;
-  }, 180);
+  }, 260);
 });

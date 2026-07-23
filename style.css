@@ -177,6 +177,7 @@ h2 {
 }
 
 .button {
+  position: relative;
   display: inline-block;
   padding: 0.65rem 1.4rem;
   border-radius: 999px;
@@ -215,6 +216,10 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
+}
+
+.card-grid .card {
+  position: relative;
 }
 
 .card {
@@ -287,26 +292,77 @@ html {
   scrollbar-width: thin;
 }
 
-.sparkle {
-  position: fixed;
+/* Edge sparkles: small stars pinned to the corners of a button/card,
+   invisible until hover, with a distinct animation per module type. */
+.edge-sparkle {
+  position: absolute;
   pointer-events: none;
-  z-index: 1000;
-  transform: translate(-50%, -50%);
-  animation: sparkle-pop 0.6s ease-out forwards;
+  z-index: 5;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.3) rotate(0deg);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition-delay: var(--delay, 0ms);
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
 }
 
-@keyframes sparkle-pop {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
-  }
-  60% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.15) rotate(45deg);
-  }
+.edge-sparkle.corner-tl { top: -10px; left: -10px; }
+.edge-sparkle.corner-tr { top: -10px; right: -10px; }
+.edge-sparkle.corner-bl { bottom: -10px; left: -10px; }
+.edge-sparkle.corner-br { bottom: -10px; right: -10px; }
+
+/* Buttons: bigger, bouncier stars */
+.sparkle-button {
+  font-size: 1.1rem;
+}
+
+.button:hover .sparkle-button {
+  opacity: 1;
+  transform: scale(1) rotate(15deg);
+  animation: twinkle-pop 850ms ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+
+.sparkle-button.burst {
+  animation: sparkle-burst-button 550ms ease-out forwards !important;
+}
+
+@keyframes twinkle-pop {
+  0%, 100% { transform: scale(1) rotate(15deg); }
+  50% { transform: scale(1.4) rotate(-10deg); }
+}
+
+@keyframes sparkle-burst-button {
+  0% { transform: scale(1) rotate(15deg); opacity: 1; }
+  45% { transform: scale(1.9) rotate(90deg); opacity: 1; }
+  100% { transform: scale(0.3) rotate(210deg); opacity: 0; }
+}
+
+/* Cards: softer, slower shimmer */
+.sparkle-card {
+  font-size: 1rem;
+}
+
+.card-grid .card:hover .sparkle-card {
+  opacity: 1;
+  transform: scale(0.9) rotate(10deg);
+  animation: twinkle-fade 1400ms ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+
+.sparkle-card.burst {
+  animation: sparkle-burst-card 650ms ease-out forwards !important;
+}
+
+@keyframes twinkle-fade {
+  0%, 100% { opacity: 0.55; transform: scale(0.8) rotate(10deg); }
+  50% { opacity: 1; transform: scale(1.05) rotate(-8deg); }
+}
+
+@keyframes sparkle-burst-card {
+  0% { transform: scale(1) rotate(10deg); opacity: 1; }
+  40% { transform: scale(1.6) rotate(-35deg); opacity: 1; }
+  100% { transform: scale(0.5) rotate(70deg); opacity: 0; }
 }
 
 @media (max-width: 480px) {
