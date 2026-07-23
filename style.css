@@ -240,6 +240,15 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
+.card-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--bold);
+  margin: 0 0 0.5rem;
+}
+
 .role {
   margin-bottom: 1.75rem;
 }
