@@ -247,6 +247,68 @@ footer a {
   color: var(--muted);
 }
 
+.eyebrow::before {
+  content: "🍓 ";
+}
+
+footer p::before {
+  content: "🍓 ";
+}
+
+.hero-visual .sticker {
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  font-size: 2.2rem;
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 4px 6px rgba(23, 21, 26, 0.2));
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--blush);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 10px;
+  border: 2px solid var(--blush);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--bold);
+}
+
+html {
+  scrollbar-color: var(--primary) var(--blush);
+  scrollbar-width: thin;
+}
+
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  animation: sparkle-pop 0.6s ease-out forwards;
+}
+
+@keyframes sparkle-pop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.15) rotate(45deg);
+  }
+}
+
 @media (max-width: 480px) {
   nav ul {
     width: 100%;
