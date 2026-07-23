@@ -240,6 +240,48 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
+.role {
+  margin-bottom: 1.75rem;
+}
+
+.role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.role-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.role-company {
+  color: var(--muted);
+  font-weight: 500;
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+.role-dates {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.role p {
+  margin: 0.5rem 0 0;
+}
+
+main ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+main li {
+  margin-bottom: 0.4rem;
+}
+
 footer {
   border-top: 1px solid var(--line);
   color: var(--muted);

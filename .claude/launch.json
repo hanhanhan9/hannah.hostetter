@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "site-preview",
-      "url": "http://localhost:4176"
+      "url": "http://localhost:4177"
     }
   ]
 }
