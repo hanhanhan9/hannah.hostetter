@@ -399,7 +399,7 @@ html {
   100% { transform: scale(0.3) rotate(210deg); opacity: 0; }
 }
 
-/* Spin: for links out to other places (email, social) — a full lazy rotation */
+/* Spin: for links out to other places (email, social) - a full lazy rotation */
 .sparkle-spin {
   font-size: 1.1rem;
 }
