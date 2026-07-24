@@ -218,6 +218,20 @@ h2 {
   gap: 1.25rem;
 }
 
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card-stack .card {
+  padding: 1.75rem;
+}
+
+.card-stack ul {
+  margin-top: 0.5rem;
+}
+
 .card {
   border: 1px solid var(--blossom);
   border-radius: 14px;
