@@ -245,6 +245,63 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
+.card .icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0 0 0.5rem;
+}
+
+.hobby-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.hobby-head .icon {
+  margin: 0;
+}
+
+.hobby-head h3 {
+  margin: 0 0 0.35rem;
+}
+
+.hobby-head p {
+  margin: 0;
+}
+
+.gallery {
+  display: flex;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+}
+
+.gallery-item {
+  width: 140px;
+  height: 140px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+}
+
+img.gallery-item {
+  object-fit: contain;
+  display: block;
+}
+
+.gallery-item.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  border: 2px dashed var(--blossom);
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 0.75rem;
+  box-sizing: border-box;
+}
+
 .card-tag {
   text-transform: uppercase;
   letter-spacing: 0.08em;
